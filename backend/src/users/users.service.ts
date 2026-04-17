@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { randomUUID } from 'crypto';
 import { User } from './user.entity';
-import { v4 as uuidv4 } from 'uuid';
 
 // In-memory store (replace with DB in production)
 const users: User[] = [];
@@ -16,7 +16,7 @@ export class UsersService {
     let user = users.find((u) => u.googleId === profile.googleId);
     if (!user) {
       user = {
-        id: uuidv4(),
+        id: randomUUID(),
         email: profile.email,
         name: profile.name,
         picture: profile.picture,
